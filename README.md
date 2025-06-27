@@ -1,4 +1,4 @@
-# Git Cheat Sheet – Essential Commands
+# Git Cheat Sheet – Beginner Commands
 ### Setup
   `git config --global user.name "Your Name"`
   `git config --global user.email "you@example.com"`
