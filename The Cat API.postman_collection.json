@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "4a6743b4-559d-4c4b-902b-e9be2a45f303",
+		"name": "The Cat API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35396563"
+	},
+	"item": [
+		{
+			"name": "Get random cat image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()",
+							"",
+							"pm.test(\"Response is not empty\", function(){",
+							"    pm.expect(jsonData).not.have.lengthOf(0)",
+							"});",
+							"",
+							"pm.test(\"Response contains image url\", function(){",
+							"    //console.log(\"======== \"+jsonData[0].url)",
+							"    pm.expect(jsonData[0]).to.have.property('url')",
+							"});",
+							"",
+							"var catImageURL = jsonData[0].url",
+							"pm.sendRequest(catImageURL, function(err, res){",
+							"    pm.test(\"Image request is successful\", function (){",
+							"        pm.expect(res).to.have.property('code', 200)",
+							"        pm.expect(res.headers.get('Content-Type')).to.include(\"image\")",
+							"    })",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/images/search",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"images",
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "live_nUhuz1vpd9DmA2ZHWzsRZPVMmZCkPjYFdjJgL3A24XlMH7jzJAxIZnrIn0M9dEje",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "x-api-key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
